@@ -8,6 +8,7 @@
 
 MODULE_LICENSE("GPL");            ///< The license type -- this affects available functionality
 MODULE_AUTHOR("Yang Liu");  
+/**
 
 static int buffer[100];
 
@@ -16,13 +17,30 @@ static void __exit pip_exit(void);
 
 
 static int __init pip_init(void) {
-  kprint("Namepipe module say hello.\n");
+  printk("Namepipe module say hello.\n");
   return 0;
 }
 
 static void __exit pip_exit(void) {
-  kprint("Namepipe module say goodbye.\n");
+  printk("Namepipe module say goodbye.\n");
+}
+*/
+int init_module(void)
+{
+	printk(KERN_INFO "Hello world 1.\n");
+
+	/* 
+	 * A non 0 return means init_module failed; module can't be loaded. 
+	 */
+	return 0;
+}
+
+void cleanup_module(void)
+{
+	printk(KERN_INFO "Goodbye world 1.\n");
 }
 
 module_init(init);
 module_exit(exit);
+
+
