@@ -99,7 +99,7 @@ static int __init pipe_init(void) {
 	sema_init(mutex, 1);
 
 	int _allocated = 0;
-	buffer = (char**)kmalloc(buffer_size * size_of(char*), GFP_KERNEL);
+	buffer = (char**)kmalloc(buffer_size * sizeof(char*), GFP_KERNEL);
 
   printk(KERN_ALERT "Init namepipe sucessfully.\n");
   misc_register(&pipe);
