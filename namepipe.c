@@ -77,7 +77,7 @@ static struct file_operations pipe_fops = {
 
 static struct miscdevice pipe = {
   .minor = MISC_DYNAMIC_MINOR,
-  .name = "namedpipe",
+  .name = "namepipe",
   .fops = &pipe_fops
 };
 
@@ -100,14 +100,14 @@ static int __init pipe_init(void) {
 	int _allocated = 0;
 	buffer = (char**)kmalloc(buffer_size*sizeof(char*), GFP_KERNEL);
 
-  printk(KERN_ALERT "Init namedpipe sucessfully.\n");
+  printk(KERN_ALERT "Init namepipe sucessfully.\n");
   misc_register(&pipe);
   return 0;
 }
 
 static void __exit pipe_exit(void) {
   misc_deregister(&pipe);
-  printk(KERN_ALERT "Exit namedpipe.\n");
+  printk(KERN_ALERT "Exit namepipe.\n");
 }
 
 module_init(pipe_init);
