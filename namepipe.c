@@ -34,15 +34,13 @@ static ssize_t pipe_write(struct file*, const char*, size_t, loff_t*);
 static int pipe_close(struct inode*, struct file*);
 
 static ssize_t pipe_read(struct file *file, char __user * out, size_t size, loff_t * off) {
-	/**
-	while (True) {
-		item = remove item();
-		index --;
-		down(sem full);
-		buffer[index++] = item;
-		up(sem empty);
-	}
-	*/
+
+	// for(user_buffer_index = 0; user_buffer_index < size; user_buffer_index++){
+	// 	if(buffer_empty_slots >= buffer_size){
+	// 		break;
+	// 	}
+	// 	copy_to_user(&user_buffer[user_buffer_index], &buffer[read_index][user_buffer_index], 1);
+	// }
 	return 0;
 }
 
