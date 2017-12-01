@@ -8,11 +8,12 @@
 #include <linux/miscdevice.h>
 #include <linux/fs.h>
 #include <linux/slab.h>
+#include <linux/semaphore.h>
 #include <sys/sem.h>
 
 static int buffer_size;
 module_param(buffer_size, int, 0000);
-int queue* = NULL;
+int* queue = NULL;
 
 
 MODULE_LICENSE("GPL");            ///< The license type -- this affects available functionality
@@ -71,8 +72,9 @@ static int pipe_close(struct inode * id, struct file * filep) {
 static struct file_operations pipe_fops = {
   .owner = THIS_MODULE,
   .open = pipe_open,
-  .release = my_close,
+  .release = pipe_close,
   .read = pipe_read,
+	.write = pipe_write
 };
 
 static struct miscdevice pipe = {
@@ -98,7 +100,7 @@ static int __init pipe_init(void) {
 	sema_init(mutex, 1);
 
 	int _allocated = 0;
-	buffer = (char**)kmalloc(buffer_size*sizeof(char*), GFP_KERNEL);
+	buffer = (char**)kmalloc(buffer_size * size_of(char*), GFP_KERNEL);
 
   printk(KERN_ALERT "Init namepipe sucessfully.\n");
   misc_register(&pipe);
