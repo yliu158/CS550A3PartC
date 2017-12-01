@@ -9,7 +9,6 @@
 #include <linux/fs.h>
 #include <linux/slab.h>
 #include <linux/semaphore.h>
-#include <sys/sem.h>
 
 static int buffer_size;
 module_param(buffer_size, int, 0000);
