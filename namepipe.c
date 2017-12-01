@@ -11,17 +11,17 @@ MODULE_AUTHOR("Yang Liu");
 
 static int buffer[100];
 
-static int __init init(void);
-static void __exit exit(void);
+static int __init pip_init(void);
+static void __exit pip_exit(void);
 
 
-static int __init init(void) {
-
+static int __init pip_init(void) {
+  kprint("Namepipe module say hello.\n");
   return 0;
 }
 
-static void __exit exit(void) {
-
+static void __exit pip_exit(void) {
+  kprint("Namepipe module say goodbye.\n");
 }
 
 module_init(init);
