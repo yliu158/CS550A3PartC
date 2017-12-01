@@ -46,6 +46,10 @@ static ssize_t my_read(
   return 0;
 }
 
+static ssize_t my_write(struct file *filep, const char *buffer, size_t len, loff_t *offset) {
+	
+}
+
 static int my_open (struct inode * id, struct file * filep){
   printk(KERN_ALERT "Char Device has been opened.\n");
   return 0;
